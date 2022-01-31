@@ -27,8 +27,6 @@ server.use('/chattopics', ChatTopics);
 server.use('/topicmessages', TopicMessages);
 //Login later
 
-//How do I stack the paths?
-
 //server.use(errorHandler);
 
 //server.get(`/`, (rep, res) => res.send('Welcome to the pet server!'));
