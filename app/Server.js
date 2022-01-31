@@ -2,10 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 //import connectDB from "./dbinit.js";
 import mongoose from "mongoose";
-import Users from "./api/User.js"
-import UserChats from "./api/UserChats.js"
-import ChatTopics from "./api/ChatTopics.js"
-import TopicMessages from "./api/TopicMessages.js"
+import Users from "../api/User.js"
+import UserChats from "../api/UserChats.js"
+import ChatTopics from "../api/ChatTopics.js"
+import TopicMessages from "../api/TopicMessages.js"
 import cors from "cors";
 
 dotenv.config();
