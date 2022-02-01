@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+//import dotenv from 'dotenv/config'
 //import 'dotenv/config'
 //import connectDB from "./dbinit.js";
 import mongoose from "mongoose";
@@ -19,6 +20,7 @@ mongoose
 
 const PORT = process.env.PORT || '3001';
 const server = express();
+server.use(express.urlencoded({ extended: true }));
 server.use(cors());
 server.use(express.json());
 server.get('/', (req, res) => res.send('Welcome to the server!'));
