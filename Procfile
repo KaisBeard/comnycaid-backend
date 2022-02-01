@@ -1,1 +1,1 @@
-web: npm run start
+web: start tybeBackend/Server.js
