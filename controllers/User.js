@@ -22,5 +22,5 @@ Server.get("/planets", (req, res) => {
 }); */
 
 export { 
-	getUsers,
+	getUsers
   }
