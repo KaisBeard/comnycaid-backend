@@ -21,6 +21,6 @@ Server.get("/planets", (req, res) => {
 		.catch((e) => res.send(e.message));
 }); */
 
-module.exports = { 
+export { 
 	getUsers,
-}
+  }
