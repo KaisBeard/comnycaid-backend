@@ -18,7 +18,7 @@ mongoose
 
 const PORT = process.env.PORT || '3001';
 const server = express();
-server.set("port", PORT);
+//server.set("port", PORT);
 server.use(cors());
 server.use(express.json());
 server.get('/', (req, res) => res.send('Welcome to the server!'));
