@@ -16,7 +16,7 @@ mongoose
 	.then((e) => console.log("Database connected"))
 	.catch((e) => console.log("error", e));
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT //|| 3001;
 const server = express();
 server.use(cors());
 server.use(express.json());
@@ -29,7 +29,5 @@ server.use('/topicmessages', TopicMessages);
 
 //server.use(errorHandler);
 
-//server.get(`/`, (rep, res) => res.send('Welcome to the pet server!'));
-//server.use('/api/pets', pets);
 
 server.listen(PORT, () => console.log(`server started on ${PORT}`))
