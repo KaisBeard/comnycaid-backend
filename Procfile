@@ -1,1 +1,1 @@
-web: start tybeBackend/Server.js
+web: node tybeBackend/Server.js
