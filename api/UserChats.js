@@ -1,7 +1,7 @@
 import express from "express";
 import {
     getUsers
-} from "../controllers/User.js";
+} from "../controllers/User.js"; //delete that
 
 import {
     getAllChatsForUser
@@ -10,6 +10,10 @@ import {
 
 
 const api = express.Router();
+
+/*api
+    .route("/")
+    .get()*/
 
 api
     .route('/:id')
