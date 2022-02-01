@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+//import 'dotenv/config'
 //import connectDB from "./dbinit.js";
 import mongoose from "mongoose";
 import Users from "./api/User.js"

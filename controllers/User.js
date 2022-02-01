@@ -2,7 +2,7 @@ import User from "../models/User.js";
 
 const getUsers = async (req, res, next) => {
 	try {
-	  const users = await User.find({}); //.populate('userId');
+	  const users = await User.find(req.query); //.populate('userId');
 	  res.json({
 		data: users,
 		msg: 'list of all users in the db',
@@ -10,6 +10,7 @@ const getUsers = async (req, res, next) => {
 	  })
 	} catch(err) {
 	  next(err)
+	  console.log(error)
 	}
   }
 
@@ -20,6 +21,6 @@ Server.get("/planets", (req, res) => {
 		.catch((e) => res.send(e.message));
 }); */
 
-export { 
+module.exports = { 
 	getUsers,
-  }
+}
