@@ -1,7 +1,7 @@
 //import Chat from "../models/Chat.js";
 import Message from "../models/Message.js";
 //import Reaction from "../models/Reaction.js";
-import Topic from "../models/Topic.js";
+import Topic from "../models/Topic";
 //import User from "../models/User.js";
 import mongoose from "mongoose";
 //import { objectId } from "mongoose";

@@ -1,1 +1,1 @@
-web: node tybeBackend/Server.js
+web: npm run start-prd
