@@ -15,7 +15,7 @@ const getAllMessagesForTopic = async (req, res, next) => {
 	  const topic = await Topic.findById(id); 
 	  //const topicMessages = await Message.find();
 	  //const topicMessages = await Message.find({messageTopic: ObjectId(id)})
-	  const topicMessages = await Message.find({"messageTopic": [id]}) //probably wrong command
+	  const topicMessages = await Message.find({"messageTopic": [id]}).sort('messageTime').populate('messageAuthor')
 	  res.json({
 		topic: topic, 
 		messages: topicMessages,
