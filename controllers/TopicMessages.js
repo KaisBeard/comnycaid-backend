@@ -27,7 +27,69 @@ const getAllMessagesForTopic = async (req, res, next) => {
 	}
   }
 
+  const createMessage = async (req, res, next) => {
+	try {
+	  const {
+		messageText,
+		messageTime,
+		messageReactions,
+		messageEmoLvl,
+		messageAuthor,
+		messageTopic
+	  } = req.body;
+	  const message = await Message.create({ messageText, messageTime, messageReactions, messageEmoLvl, messageAuthor, messageTopic });
+
+	  res.json({
+		data: message,
+		success: true,
+		//msg: `pet with id ${pet.id} successfully created`
+	  })
+	} catch(err) {
+	  next(err)
+	}
+}
+
+const deleteMessage = async (req, res, next) => {
+	try {
+	  const { id } = req.params
+  
+	  const message = await Message.findByIdAndDelete(id);
+  
+	  res.json({
+		data: message,
+		success: true,
+		//msg: `pet with id ${id} has been successfully deleted!`
+	  })
+	} catch(err) {
+	  next(err)
+	}
+  }
+
+  const editMessage = async (req, res, next) => {
+	try {
+	const {
+		messageText,
+		messageTime,
+		messageReactions,
+		messageEmoLvl,
+		messageAuthor,
+		messageTopic
+	  } = req.body;
+	  const message = await Message.findByIdAndUpdate({ messageText, messageTime, messageReactions, messageEmoLvl, messageAuthor, messageTopic });
+	  res.json({
+		data: message,
+		//msg: `pet with id ${id} successfully updated`,
+		success: true
+	  })
+	} catch(err) {
+	  next(err)
+	}
+  }
+
 
 export { 
 	getAllMessagesForTopic,
+	createMessage,
+	deleteMessage,
+	editMessage
   }

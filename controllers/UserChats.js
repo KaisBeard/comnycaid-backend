@@ -20,7 +20,62 @@ const getAllChatsForUser = async (req, res, next) => {
 	}
   }
 
+  const createChat = async (req, res, next) => {
+	try {
+	  const {
+		chatName, 
+		chatMembers
+	  } = req.body;
+	  const chat = await Chat.create({ chatName, chatMembers });
+
+	  res.json({
+		data: chat,
+		success: true,
+		//msg: `pet with id ${pet.id} successfully created`
+	  })
+	} catch(err) {
+	  next(err)
+	}
+}
+
+const deleteChat = async (req, res, next) => {
+	try {
+	  const { id } = req.params
+  
+	  const chat = await Chat.findByIdAndDelete(id);
+  
+	  res.json({
+		data: chat,
+		success: true,
+		//msg: `pet with id ${id} has been successfully deleted!`
+	  })
+	} catch(err) {
+	  next(err)
+	}
+  }
+
+  const editChat = async (req, res, next) => {
+	try {
+	const {
+		chatName,
+		chatMembers,
+	  } = req.body;
+	  const chat = await Chat.findByIdAndUpdate({ chatName, chatMembers });
+	  res.json({
+		data: chat,
+		//msg: `pet with id ${id} successfully updated`,
+		success: true
+	  })
+	} catch(err) {
+	  next(err)
+	}
+  }
+
+
 
 export { 
 	getAllChatsForUser,
+	createChat,
+	deleteChat,
+	editChat
   }

@@ -21,6 +21,64 @@ const getAllTopicsForChat = async (req, res, next) => {
   }
 
 
+
+  const createTopic = async (req, res, next) => {
+	try {
+	  const {
+		topicTitle,
+		topicDesc,
+		chatId
+	  } = req.body;
+	  const topic = await Topic.create({ topicTitle, topicDesc, chatId });
+
+	  res.json({
+		data: topic,
+		success: true,
+		//msg: `pet with id ${pet.id} successfully created`
+	  })
+	} catch(err) {
+	  next(err)
+	}
+}
+
+const deleteTopic = async (req, res, next) => {
+	try {
+	  const { id } = req.params
+  
+	  const topic = await Topic.findByIdAndDelete(id);
+  
+	  res.json({
+		data: topic,
+		success: true,
+		//msg: `pet with id ${id} has been successfully deleted!`
+	  })
+	} catch(err) {
+	  next(err)
+	}
+  }
+
+  const editTopic = async (req, res, next) => {
+	try {
+		const {
+			topicTitle,
+			topicDesc,
+			chatId
+		} = req.body;
+		const topic = await Topic.findByIdAndUpdate({ topicTitle, topicDesc, chatId });
+	  	res.json({
+			data: topic,
+			//msg: `pet with id ${id} successfully updated`,
+			success: true
+	  	})
+	} catch(err) {
+	  next(err)
+	}
+  }
+
+
 export { 
 	getAllTopicsForChat,
+	createTopic,
+	deleteTopic,
+	editTopic
   }
