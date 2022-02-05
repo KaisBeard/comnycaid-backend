@@ -18,5 +18,8 @@ const api = express.Router();
 api
     .route('/:id')
     .get(getAllChatsForUser)
+    .post(createChat) //different path?
+	.delete(deleteChat)
+	.put(editChat)
 
 export default api;

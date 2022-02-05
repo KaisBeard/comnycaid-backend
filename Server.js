@@ -9,8 +9,11 @@ import UserChats from "./api/UserChats.js"
 import ChatTopics from "./api/ChatTopics.js"
 import TopicMessages from "./api/TopicMessages.js"
 import cors from "cors";
+import { Server } from "socket.io";
+import { createServer } from "http";
 
 dotenv.config();
+
 
 //connectDB();
 mongoose
@@ -20,6 +23,23 @@ mongoose
 
 const PORT = process.env.PORT || '3001';
 const server = express();
+const httpServer = createServer(server);
+
+const io = new Server(httpServer, {
+	cors: {
+		origin: 'http://localhost:3001/', //Is it this server or the other server?
+		methods: ["GET", "Post"]
+	}
+});
+
+io.on('connection', (socket) => {
+    socket.on('chat message', (msg) => {
+      //io.emit('chat message', msg);
+      console.log("chat message: " + msg)
+    });
+  });
+
+
 server.use(express.urlencoded({ extended: true }));
 server.use(cors());
 server.use(express.json());
@@ -33,4 +53,4 @@ server.use('/topicmessages', TopicMessages);
 //server.use(errorHandler);
 
 
-server.listen(PORT, () => console.log(`server started on ${PORT}`))
+httpServer.listen(PORT, () => console.log(`server started on ${PORT}`))

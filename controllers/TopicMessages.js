@@ -86,7 +86,6 @@ const deleteMessage = async (req, res, next) => {
 	}
   }
 
-
 export { 
 	getAllMessagesForTopic,
 	createMessage,
