@@ -1,13 +1,11 @@
 import express from "express";
-import {
-    getUsers
-} from "../controllers/User.js";
 
 import {
-    getAllTopicsForChat
+    getAllTopicsForChat,
+	createTopic,
+	deleteTopic,
+	editTopic
 } from "../controllers/ChatTopics.js";
-
-
 
 const api = express.Router();
 

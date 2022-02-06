@@ -4,7 +4,10 @@ import {
 } from "../controllers/User.js"; //delete that
 
 import {
-    getAllChatsForUser
+    getAllChatsForUser,
+    createChat,
+	deleteChat,
+	editChat
 } from "../controllers/UserChats.js";
 
 
