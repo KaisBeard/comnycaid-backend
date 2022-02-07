@@ -1,7 +1,4 @@
 import express from "express";
-import {
-    getUsers
-} from "../controllers/User.js"; //delete that
 
 import {
     getAllChatsForUser,
@@ -9,8 +6,6 @@ import {
 	deleteChat,
 	editChat
 } from "../controllers/UserChats.js";
-
-
 
 const api = express.Router();
 
@@ -20,9 +15,12 @@ const api = express.Router();
 
 api
     .route('/:id')
-    .get(getAllChatsForUser)
-    .post(createChat) //different path?
-	.delete(deleteChat)
-	.put(editChat)
+        .get(getAllChatsForUser)
+        .post(createChat) //different path?
+
+    api
+    .route('/:id/:chatid')
+        .delete(deleteChat)
+        .put(editChat)
 
 export default api;

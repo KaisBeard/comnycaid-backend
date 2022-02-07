@@ -40,9 +40,9 @@ const getAllChatsForUser = async (req, res, next) => {
 
 const deleteChat = async (req, res, next) => {
 	try {
-	  const { id } = req.params
+	  const { chatid } = req.params
   
-	  const chat = await Chat.findByIdAndDelete(id);
+	  const chat = await Chat.findByIdAndDelete(chatid);
   
 	  res.json({
 		data: chat,
@@ -56,11 +56,12 @@ const deleteChat = async (req, res, next) => {
 
   const editChat = async (req, res, next) => {
 	try {
+		const { chatid } = req.params;
 	const {
 		chatName,
 		chatMembers,
 	  } = req.body;
-	  const chat = await Chat.findByIdAndUpdate({ chatName, chatMembers });
+	  const chat = await Chat.findByIdAndUpdate(chatid, { chatName, chatMembers });
 	  res.json({
 		data: chat,
 		//msg: `pet with id ${id} successfully updated`,

@@ -43,9 +43,9 @@ const getAllTopicsForChat = async (req, res, next) => {
 
 const deleteTopic = async (req, res, next) => {
 	try {
-	  const { id } = req.params
+		const { topicid } = req.params;
   
-	  const topic = await Topic.findByIdAndDelete(id);
+	  const topic = await Topic.findByIdAndDelete(topicid);
   
 	  res.json({
 		data: topic,
@@ -59,12 +59,13 @@ const deleteTopic = async (req, res, next) => {
 
   const editTopic = async (req, res, next) => {
 	try {
+		const { topicid } = req.params;
 		const {
 			topicTitle,
 			topicDesc,
 			chatId
 		} = req.body;
-		const topic = await Topic.findByIdAndUpdate({ topicTitle, topicDesc, chatId });
+		const topic = await Topic.findByIdAndUpdate(topicid, { topicTitle, topicDesc, chatId });
 	  	res.json({
 			data: topic,
 			//msg: `pet with id ${id} successfully updated`,

@@ -51,9 +51,9 @@ const getAllMessagesForTopic = async (req, res, next) => {
 
 const deleteMessage = async (req, res, next) => {
 	try {
-	  const { id } = req.params
+	  const { messageid } = req.params
   
-	  const message = await Message.findByIdAndDelete(id);
+	  const message = await Message.findByIdAndDelete(messageid);
   
 	  res.json({
 		data: message,
@@ -67,6 +67,7 @@ const deleteMessage = async (req, res, next) => {
 
   const editMessage = async (req, res, next) => {
 	try {
+	const { messageid } = req.params;
 	const {
 		messageText,
 		messageTime,
@@ -75,7 +76,7 @@ const deleteMessage = async (req, res, next) => {
 		messageAuthor,
 		messageTopic
 	  } = req.body;
-	  const message = await Message.findByIdAndUpdate({ messageText, messageTime, messageReactions, messageEmoLvl, messageAuthor, messageTopic });
+	  const message = await Message.findByIdAndUpdate(messageid, { messageText, messageTime, messageReactions, messageEmoLvl, messageAuthor, messageTopic });
 	  res.json({
 		data: message,
 		//msg: `pet with id ${id} successfully updated`,

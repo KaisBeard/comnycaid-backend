@@ -29,9 +29,9 @@ const io = new Server(httpServer, {
 	cors: {
 		origin: ["http://localhost:3000", "http://localhost:3001" ], //Is it this server or the other server?
 		methods: ["GET", "Post"],
-		"Access-Control-Allow-Origin": "http://localhost:3000/"
+		//"Access-Control-Allow-Origin": "http://localhost:3000/"
 	},
-	"Access-Control-Allow-Origin": "http://localhost:3000/"
+	//"Access-Control-Allow-Origin": "http://localhost:3000/"
 });
 
 io.on('connection', (socket) => {

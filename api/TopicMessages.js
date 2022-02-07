@@ -12,6 +12,9 @@ api
     .route('/:id')
     .get(getAllMessagesForTopic)
     .post(createMessage) //different path?
+
+api
+    .route('/:id/:messageid')
 	.delete(deleteMessage)
 	.put(editMessage)
 export default api;

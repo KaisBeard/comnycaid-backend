@@ -13,6 +13,9 @@ api
     .route('/:id')
     .get(getAllTopicsForChat)
     .post(createTopic) //different path?
+
+api
+    .route('/:id/:topicid')
 	.delete(deleteTopic)
 	.put(editTopic)
 
