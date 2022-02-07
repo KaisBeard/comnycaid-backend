@@ -36,8 +36,9 @@ const io = new Server(httpServer, {
 
 io.on('connection', (socket) => {
 	console.log("socks connected!")
-    socket.on('message', (msg) => {
+    socket.on('chat message', (msg) => {
       //io.emit('chat message', msg);
+	  //send to topics and send via props to topic and map
     console.log(msg)
     });
   });

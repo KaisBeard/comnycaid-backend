@@ -2,15 +2,16 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const ChatSchema = new Schema({
-	
+
   chatName: {
       type: String,
     },
-  chatMembers: {
+  chatMembers: [
+    {
     type: Schema.ObjectId,
-    ref: 'User'
-    //type: Array, //Do I need to refer to user ids here?
-    }, 
+    ref: 'User',
+    },
+  ], 
 });
 
 const ChatModel = mongoose.model('Chat', ChatSchema)

@@ -1,5 +1,5 @@
 import Chat from "../models/Chat.js";
-//import Message from "../models/Message.js";
+import Message from "../models/Message.js";
 //import Reaction from "../models/Reaction.js";
 import Topic from "../models/Topic.js";
 //import User from "../models/User.js";
@@ -8,7 +8,8 @@ const getAllTopicsForChat = async (req, res, next) => {
 	try {
 		const { id } = req.params;
 	  const chat = await Chat.findById(id); 
-	  const topics = await Topic.find({"chatId" : `${id}`}) //probably wrong command
+	  const topics = await Topic.find({"chatId" : `${id}`}) 
+	  const messages = await Message.find({"topicid" : `${Topic._id}`})
 	  res.json({
 		chat: chat, 
 		topics: topics,
@@ -44,7 +45,7 @@ const getAllTopicsForChat = async (req, res, next) => {
 const deleteTopic = async (req, res, next) => {
 	try {
 		const { topicid } = req.params;
-  
+		
 	  const topic = await Topic.findByIdAndDelete(topicid);
   
 	  res.json({

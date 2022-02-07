@@ -5,16 +5,15 @@ import Topic from "../models/Topic.js";
 //import User from "../models/User.js";
 import mongoose from "mongoose";
 //import { objectId } from "mongoose";
+const { ObjectId } = mongoose.Types;
 
 const getAllMessagesForTopic = async (req, res, next) => {
-	const { ObjectId } = mongoose.Types;
+	
 	
 	try {
 		const { id }  = req.params;
 		
 	  const topic = await Topic.findById(id); 
-	  //const topicMessages = await Message.find();
-	  //const topicMessages = await Message.find({messageTopic: ObjectId(id)})
 	  const topicMessages = await Message.find({"messageTopic": [id]}).sort('messageTime').populate('messageAuthor')
 	  res.json({
 		topic: topic, 
@@ -37,7 +36,8 @@ const getAllMessagesForTopic = async (req, res, next) => {
 		messageAuthor,
 		messageTopic
 	  } = req.body;
-	  const message = await Message.create({ messageText, messageTime, messageReactions, messageEmoLvl, messageAuthor, messageTopic });
+	  const topicId = Topic._id
+	  const message = await Message.create({ messageText, messageTime, messageReactions, messageEmoLvl, messageAuthor, messageTopic:topicId });
 
 	  res.json({
 		data: message,

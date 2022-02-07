@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 
 import {
     getAllChatsForUser,
@@ -9,6 +10,7 @@ import {
 
 const api = express.Router();
 
+//if( !mongoose.Types.ObjectId.isValid(id) ) return false;
 /*api
     .route("/")
     .get()*/
@@ -16,7 +18,9 @@ const api = express.Router();
 api
     .route('/:id')
         .get(getAllChatsForUser)
-        .post(createChat) //different path?
+        .post(createChat) 
+        
+        
 
     api
     .route('/:id/:chatid')

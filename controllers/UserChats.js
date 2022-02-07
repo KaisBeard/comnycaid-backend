@@ -3,6 +3,8 @@ import Chat from "../models/Chat.js";
 //import Reaction from "../models/Reaction.js";
 //import Topic from "../models/Topic.js";
 import User from "../models/User.js";
+import mongoose from "mongoose";
+const { ObjectId } = mongoose.Types;
 
 const getAllChatsForUser = async (req, res, next) => {
 	try {
@@ -21,13 +23,16 @@ const getAllChatsForUser = async (req, res, next) => {
   }
 
   const createChat = async (req, res, next) => {
+	
 	try {
 	  const {
 		chatName, 
 		chatMembers
-	  } = req.body;
-	  const chat = await Chat.create({ chatName, chatMembers });
-
+	  } = req.body; 
+	  const chatMembersIds = chatMembers.map(a => ObjectId(a))
+	  //if( !mongoose.Types.ObjectId.isValid(id) ) return false;
+	  const chat = await Chat.create({ chatName, chatMembers:chatMembersIds });
+	  
 	  res.json({
 		data: chat,
 		success: true,
