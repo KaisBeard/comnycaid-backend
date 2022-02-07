@@ -36,8 +36,8 @@ const getAllMessagesForTopic = async (req, res, next) => {
 		messageAuthor,
 		messageTopic
 	  } = req.body;
-	  const topicId = Topic._id
-	  const message = await Message.create({ messageText, messageTime, messageReactions, messageEmoLvl, messageAuthor, messageTopic:topicId });
+	  //const topicId = Topic._id
+	  const message = await Message.create({ messageText, messageTime, messageReactions, messageEmoLvl, messageAuthor, messageTopic });
 
 	  res.json({
 		data: message,
