@@ -30,7 +30,6 @@ const getAllChatsForUser = async (req, res, next) => {
 		chatMembers
 	  } = req.body; 
 	  const chatMembersIds = chatMembers.map(a => ObjectId(a))
-	  //if( !mongoose.Types.ObjectId.isValid(id) ) return false;
 	  const chat = await Chat.create({ chatName, chatMembers:chatMembersIds });
 	  
 	  res.json({

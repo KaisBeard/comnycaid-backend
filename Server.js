@@ -34,15 +34,48 @@ const io = new Server(httpServer, {
 	//"Access-Control-Allow-Origin": "http://localhost:3000/"
 });
 
+const users = [];
+
+function userJoin(id, authorId, topicId) {
+	const user = { id, authorId, topicId };
+	users.push(user);
+	return user;
+  }
+
+function getCurrentUser(id) {
+	return users.find(user => user.id === id);
+}
+
+//const moment = require('moment');
+
+function formatMessage(username, text) {
+  return {
+    username,
+    text
+    //time: moment().format('h:mm a')
+  };
+}
+
 io.on('connection', (socket) => {
 	console.log("socks connected!")
-    socket.on('chat message', (msg) => {
+	socket.on('joinTopic', ({ authorId, topicId }) => {
+		const user = userJoin(socket.id, authorId, topicId);
+		socket.join(user.topicId);
+		console.log(authorId + " joined the topic!")
+	})
+	socket.on('chatMessage', (msg) => {
+		//const message = [msg]
+		const user = getCurrentUser(socket.id);
+		io.to(user.topicId).emit('message', msg); //user.authorId,
+		console.log('message', msg); //user.authorId,
+	});
+	
+	//socket.on('chat message', (msg) => {
       //io.emit('chat message', msg);
-	  //send to topics and send via props to topic and map
-    console.log(msg)
-    });
-  });
+	  //send to chats and send via props to topic and map
 
+    //console.log(msg)  })
+    });
 
 server.use(express.urlencoded({ extended: true }));
 server.use(cors());
@@ -53,7 +86,6 @@ server.use('/userchats', UserChats);
 server.use('/chattopics', ChatTopics);
 server.use('/topicmessages', TopicMessages);
 //Login later
-
 //server.use(errorHandler);
 
 
