@@ -29,9 +29,7 @@ const io = new Server(httpServer, {
 	cors: {
 		origin: ["https://kaisbeard.github.io/comnycaid/", "https://tybe.herokuapp.com/" ], //Is it this server or the other server?
 		methods: ["GET", "Post", "Put", "Delete"],
-		//"Access-Control-Allow-Origin": "http://localhost:3000/"
 	},
-	//"Access-Control-Allow-Origin": "http://localhost:3000/"
 });
 
 const users = [];
