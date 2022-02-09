@@ -27,7 +27,7 @@ const httpServer = createServer(server);
 
 const io = new Server(httpServer, {
 	cors: {
-		origin: ["https://kaisbeard.github.io/comnycaid/", "https://tybe.herokuapp.com/" ], //Is it this server or the other server?
+		origin: ["https://kaisbeard.github.io/comnycaid/", "https://tybe.herokuapp.com/", "https://kaisbeard.github.io/" ],
 		methods: ["GET", "Post", "Put", "Delete"],
 	},
 });
