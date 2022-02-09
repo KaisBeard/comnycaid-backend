@@ -61,13 +61,13 @@ io.on('connection', (socket) => {
 	socket.on('joinTopic', ({ authorId, topicId }) => {
 		const user = userJoin(socket.id, authorId, topicId);
 		socket.join(user.topicId);
-		console.log(authorId + " joined the topic!")
+		console.log(authorId + " joined the topic " + topicId)
 	})
 	socket.on('chatMessage', (msg) => {
 		//const message = [msg]
 		const user = getCurrentUser(socket.id);
 		io.to(user.topicId).emit('message', msg); //user.authorId,
-		console.log('message', msg); //user.authorId,
+		console.log('message: ', msg, "room: ", user.topicId); //user.authorId,
 	});
 	
 	//socket.on('chat message', (msg) => {

@@ -8,7 +8,7 @@ const getAllTopicsForChat = async (req, res, next) => {
 	try {
 		const { id } = req.params;
 	  const chat = await Chat.findById(id); 
-	  const topics = await Topic.find({"chatId" : `${id}`})//.sort(updatedAt); why is this not working?
+	  const topics = await Topic.find({"chatId" : `${id}`}).sort({updatedAt: -1}); // needs to be an object why is this not working?
 	  const messages = await Message.find({"topicid" : `${Topic._id}`})
 	  res.json({
 		chat: chat, 
