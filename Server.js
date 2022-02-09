@@ -64,10 +64,14 @@ io.on('connection', (socket) => {
 		console.log(authorId + " joined the topic " + topicId)
 	})
 	socket.on('chatMessage', (msg) => {
-		//const message = [msg]
+		console.log("recieved the following message")
+		console.log(msg)
 		const user = getCurrentUser(socket.id);
+		console.log(user)
 		io.to(user.topicId).emit('message', msg); //user.authorId,
-		console.log('message: ', msg, "room: ", user.topicId); //user.authorId,
+		console.log(io.to(user.topicId))
+		console.log("sends message to" + user.topicId)
+		//console.log('message: ', msg, "room: ", user.topicId); //user.authorId,
 	});
 	
 	//socket.on('chat message', (msg) => {
@@ -87,6 +91,5 @@ server.use('/chattopics', ChatTopics);
 server.use('/topicmessages', TopicMessages);
 //Login later
 //server.use(errorHandler);
-
 
 httpServer.listen(PORT, () => console.log(`server started on ${PORT}`))
