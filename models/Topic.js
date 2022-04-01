@@ -14,7 +14,7 @@ const TopicSchema = new Schema({
         ref: 'Chat'
       },  
     
-}, {timestamps: true }
+}, {timestamps: { createdAt: 'created_at' } }
 );
 
 const TopicModel = mongoose.model('Topic', TopicSchema)
