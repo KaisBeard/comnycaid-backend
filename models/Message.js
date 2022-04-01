@@ -23,7 +23,7 @@ const MessageSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'Topic'
       }, 
-}, {timestamps: { createdAt: 'created_at' } }
+}, {timestamps: true }
 );
 
 const MessageModel = mongoose.model('Message', MessageSchema)
