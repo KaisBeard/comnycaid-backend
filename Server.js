@@ -70,7 +70,9 @@ io.on('connection', (socket) => {
 		console.log(user)
 		io.to(msg.messageTopic).emit('message', msg);
 		//io.to(user.topicId).emit('message', msg); //user.authorId,
-		console.log(io.to(user.topicId))
+		
+		console.log(io.to(msg.messageTopic))
+		//console.log(io.to(user.topicId))
 		console.log("sends message to" + user.topicId)
 		//console.log('message: ', msg, "room: ", user.topicId); //user.authorId,
 	});
