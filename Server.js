@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
 	console.log("socks connected!")
 	socket.on('joinTopic', ({ authorId, topicId }) => {
 		const user = userJoin(socket.id, authorId, topicId);
-		socket.join(user.topicId);
+		socket.join(topicId); //user.
 		console.log(authorId + " joined the topic " + topicId)
 	})
 	socket.on('chatMessage', (msg) => {
@@ -66,8 +66,11 @@ io.on('connection', (socket) => {
 		console.log(msg)
 		const user = getCurrentUser(socket.id);
 		console.log(user)
-		io.to(user.topicId).emit('message', msg); //user.authorId,
-		console.log(io.to(user.topicId))
+		io.to(msg.messageTopic).emit('message', msg);
+		//io.to(user.topicId).emit('message', msg); //user.authorId,
+		
+		console.log(io.to(msg.messageTopic))
+		//console.log(io.to(user.topicId))
 		console.log("sends message to" + user.topicId)
 		//console.log('message: ', msg, "room: ", user.topicId); //user.authorId,
 	});
