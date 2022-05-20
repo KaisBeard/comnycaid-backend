@@ -2,10 +2,9 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const ChatSchema = new Schema({
-
   chatName: {
-      type: String,
-    },
+    type: String,
+  },
   chatMembers: [
     {
     type: Schema.ObjectId,

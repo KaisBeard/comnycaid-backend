@@ -1,8 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-//import dotenv from 'dotenv/config'
-//import 'dotenv/config'
-//import connectDB from "./dbinit.js";
 import mongoose from "mongoose";
 import Users from "./api/User.js"
 import UserChats from "./api/UserChats.js"
@@ -13,7 +10,6 @@ import { Server } from "socket.io";
 import { createServer } from "http";
 
 dotenv.config();
-
 
 //connectDB();
 mongoose
@@ -32,6 +28,7 @@ const io = new Server(httpServer, {
 	},
 });
 
+/*Sockets */
 const users = [];
 
 function userJoin(id, authorId, topicId) {
@@ -44,13 +41,11 @@ function getCurrentUser(id) {
 	return users.find(user => user.id === id);
 }
 
-//const moment = require('moment');
-
 function formatMessage(username, text) {
   return {
     username,
     text
-    //time: moment().format('h:mm a')
+    // add time?
   };
 }
 
@@ -58,29 +53,21 @@ io.on('connection', (socket) => {
 	console.log("socks connected!")
 	socket.on('joinTopic', ({ authorId, topicId }) => {
 		const user = userJoin(socket.id, authorId, topicId);
-		socket.join(topicId); //user.
+		socket.join(topicId);
 		console.log(authorId + " joined the topic " + topicId)
 	})
 	socket.on('chatMessage', (msg) => {
-		console.log("recieved the following message")
-		console.log(msg)
+		//console.log("recieved the following message")
+		//console.log(msg)
 		const user = getCurrentUser(socket.id);
-		console.log(user)
-		io.to(msg.messageTopic).emit('message', msg);
-		//io.to(user.topicId).emit('message', msg); //user.authorId,
-		
-		console.log(io.to(msg.messageTopic))
+		//console.log(user)
+		io.to(msg.messageTopic).emit('message', msg);		
+		//console.log(io.to(msg.messageTopic))
 		//console.log(io.to(user.topicId))
-		console.log("sends message to" + user.topicId)
+		//console.log("sends message to" + user.topicId)
 		//console.log('message: ', msg, "room: ", user.topicId); //user.authorId,
 	});
-	
-	//socket.on('chat message', (msg) => {
-      //io.emit('chat message', msg);
-	  //send to chats and send via props to topic and map
-
-    //console.log(msg)  })
-    });
+});
 
 server.use(express.urlencoded({ extended: true }));
 server.use(cors());

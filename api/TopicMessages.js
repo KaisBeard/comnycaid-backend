@@ -11,12 +11,13 @@ const api = express.Router();
 api
     .route('/:id')
     .get(getAllMessagesForTopic)
-    .post(createMessage) //different path?
+    .post(createMessage)
 
 api
     .route('/:id/:messageid')
 	.delete(deleteMessage)
 	.put(editMessage)
+    
 export default api;
 
 

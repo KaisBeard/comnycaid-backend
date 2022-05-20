@@ -1,5 +1,4 @@
 import express from "express";
-
 import {
     getAllTopicsForChat,
 	createTopic,
@@ -12,7 +11,7 @@ const api = express.Router();
 api
     .route('/:id')
     .get(getAllTopicsForChat)
-    .post(createTopic) //different path?
+    .post(createTopic)
 
 api
     .route('/:id/:topicid')
